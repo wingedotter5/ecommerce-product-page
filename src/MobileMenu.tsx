@@ -1,7 +1,7 @@
 const MobileMenu = ({ toggleMenu }: { toggleMenu: () => void }) => {
   return (
     <div
-      className=" fixed inset-0 z-40 min-h-screen min-w-full bg-[rgba(0,0,0,0.7)]"
+      className=" fixed inset-0 z-50 bg-[rgba(0,0,0,0.7)]"
       onClick={toggleMenu}
     >
       <div
