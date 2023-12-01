@@ -2,10 +2,11 @@ import { useState } from "react";
 
 interface CarouselProps {
   images: string[];
-  arrows: boolean;
+  arrows?: boolean;
+  showLightbox?: () => void;
 }
 
-const Carousel = ({ images, arrows }: CarouselProps) => {
+const Carousel = ({ images, arrows, showLightbox }: CarouselProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const next = () =>
@@ -27,6 +28,7 @@ const Carousel = ({ images, arrows }: CarouselProps) => {
           className="md:rounded-xl"
           src={images[activeIndex]}
           alt="product image"
+          onClick={showLightbox}
         />
         {arrows && (
           <>
@@ -66,7 +68,7 @@ const Carousel = ({ images, arrows }: CarouselProps) => {
         {images.map((i, index) => (
           <button
             key={i}
-            className={`w-24 overflow-hidden rounded-xl hover:opacity-50 ${
+            className={`w-24 overflow-hidden rounded-xl bg-white hover:opacity-50 ${
               activeIndex === index ? "border-2 border-orange" : ""
             }`}
             onClick={() => setActiveIndex(index)}

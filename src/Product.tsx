@@ -21,12 +21,32 @@ const Product = ({ product }: ProductProps) => {
       if (prevState > 0) return prevState - 1;
       return prevState;
     });
+  const [lightboxVisible, setLightboxVisible] = useState(false);
+  const showLightbox = () => setLightboxVisible(true);
+  const hideLightbox = () => setLightboxVisible(false);
 
   return (
     <div className="grid place-items-center sm:grid-cols-1 sm:px-10 sm:py-20 md:grid-cols-2">
-      <div>
-        <Carousel images={product.images} arrows />
+      <div className="cursor-pointer">
+        <Carousel images={product.images} showLightbox={showLightbox} />
       </div>
+
+      {lightboxVisible && (
+        <div className="fixed inset-0 z-40 flex items-center justify-center bg-[rgba(0,0,0,0.7)]">
+          <div className="flex flex-col">
+            <button className="mb-5 self-end" onClick={hideLightbox}>
+              <svg width="14" height="15" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z"
+                  fill="white"
+                  fillRule="evenodd"
+                />
+              </svg>
+            </button>
+            <Carousel images={product.images} arrows />
+          </div>
+        </div>
+      )}
 
       <div className="p-4">
         <small className="text-lg font-semibold text-orange">
