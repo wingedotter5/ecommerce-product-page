@@ -1,10 +1,20 @@
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 
 import MobileMenu from "./MobileMenu";
 import User from "./components/User";
 import Cart from "./components/Cart";
 import { useAppSelector } from "./hooks";
 import CartItem from "./components/CartItem";
+
+const NavItem = ({ children }: { children: ReactNode }) => {
+  return (
+    <li className="relative after:inset-0 after:top-[calc(100%-5px)] after:h-[5px] after:w-full after:bg-orange hover:after:absolute">
+      <a className="block py-5" href="#">
+        {children}
+      </a>
+    </li>
+  );
+};
 
 const Navbar = () => {
   const items = useAppSelector((state) => state.cart.items);
@@ -19,7 +29,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="relative flex flex-wrap items-center justify-between border-b border-grayish-blue p-5">
+    <header className="relative flex flex-wrap items-center justify-between border-b border-grayish-blue p-5 sm:py-0">
       <div className="flex flex-wrap items-center gap-16">
         <div className="flex flex-wrap items-center gap-3">
           <svg
@@ -42,21 +52,9 @@ const Navbar = () => {
 
         <nav className="hidden sm:block">
           <ul className="flex flex-wrap items-center gap-8 text-xl text-dark-grayish-blue">
-            <li>
-              <a href="#">Collections</a>
-            </li>
-            <li>
-              <a href="#">Men</a>
-            </li>
-            <li>
-              <a href="#">Women</a>
-            </li>
-            <li>
-              <a href="#">About</a>
-            </li>
-            <li>
-              <a href="#">Contact</a>
-            </li>
+            {["Collections", "Men", "Women", "About", "Contact"].map((item) => (
+              <NavItem>{item}</NavItem>
+            ))}
           </ul>
         </nav>
       </div>
