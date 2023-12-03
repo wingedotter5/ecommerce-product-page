@@ -25,7 +25,7 @@ const Carousel = ({ images, arrows, showLightbox }: CarouselProps) => {
     <div className="flex flex-col gap-10">
       <div className="relative max-w-[500px]">
         <img
-          className="md:rounded-xl"
+          className="cursor-pointer md:rounded-xl"
           src={images[activeIndex]}
           alt="product image"
           onClick={showLightbox}
@@ -64,7 +64,7 @@ const Carousel = ({ images, arrows, showLightbox }: CarouselProps) => {
         )}
       </div>
 
-      <div className="hidden cursor-pointer flex-wrap justify-between md:flex">
+      <div className="hidden flex-wrap justify-between md:flex">
         {images.map((i, index) => (
           <button
             key={i}

@@ -27,9 +27,7 @@ const Product = ({ product }: ProductProps) => {
 
   return (
     <div className="grid place-items-center sm:grid-cols-1 sm:px-10 sm:py-20 md:grid-cols-2">
-      <div className="cursor-pointer">
-        <Carousel images={product.images} showLightbox={showLightbox} />
-      </div>
+      <Carousel images={product.images} showLightbox={showLightbox} />
 
       {lightboxVisible && (
         <div className="fixed inset-0 z-40 flex items-center justify-center bg-[rgba(0,0,0,0.7)]">
